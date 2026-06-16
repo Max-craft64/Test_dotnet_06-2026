@@ -2,43 +2,68 @@
 
 Console.WriteLine("Infromation Personelles\n");
 
-List<QuestionReponse> listeQR = new List<QuestionReponse>();
-listeQR.Add(new QuestionReponse() { Question = "Quel est votre prénom ?\n", PréReponse = "Prénom : "  } ); 
-listeQR.Add(new QuestionReponse() { Question = "Quel est votre nom ?\n", PréReponse = "Nom : " });
-listeQR.Add(new QuestionReponse() { Question = "Quel est votre âge ?\n", PréReponse = "Âge : " });
+GestionairedesQuestionReponse Répétition = new GestionairedesQuestionReponse();
+Répétition.RefaireLeQuestionaire = true;
 
-
-foreach (QuestionReponse QR in listeQR)
+while (Répétition.RefaireLeQuestionaire == true)
 {
-    Console.WriteLine(QR.Question);
-    string? reponse = Console.ReadLine();
-    QR.Reponse = reponse ?? "";
+    List<QuestionReponse> listeQR = new List<QuestionReponse>();
+    listeQR.Add(new QuestionReponse() { Question = "Quel est votre prénom ?\n", PréReponse = "Prénom : "  } ); 
+    listeQR.Add(new QuestionReponse() { Question = "Quel est votre nom ?\n", PréReponse = "Nom : " });
+    listeQR.Add(new QuestionReponse() { Question = "Quel est votre âge ?\n", PréReponse = "Âge : " });
+    
+    
+    foreach (QuestionReponse QR in listeQR)
+    {
+        Console.WriteLine(QR.Question);
+        string? reponse = Console.ReadLine();
+        QR.Reponse = reponse ?? "";
+        Console.WriteLine("");
+    }
+    
+    Console.WriteLine("Voulez-vous afficher les réponses ? (Y/N)\n");
+    string? choixAffichage = Console.ReadLine();
     Console.WriteLine("");
+    
+    GestionairedesQuestionReponse afficher = new GestionairedesQuestionReponse();
+
+    if (choixAffichage == "Y" || choixAffichage == "y")
+    {
+        afficher.AfficherReponses = true;
+    }
+
+    else if (choixAffichage == "N" || choixAffichage == "n")
+    {
+        afficher.AfficherReponses = false;
+    }
+
+    else
+    {
+        Console.WriteLine("heu...");
+        throw new Exception("erreur : vous devez répondre par y ou n !");
+    }
+
+    afficher.AfficherReponsesMethod(listeQR);
+
+    Console.WriteLine("Voulez-vous Refaire le test ? (Y/N)\n");
+    string? ChoixRépétition = Console.ReadLine();
+    Console.WriteLine("");
+
+    if (ChoixRépétition == "Y" || ChoixRépétition == "y")
+    {
+        Répétition.RefaireLeQuestionaire = true;
+    }
+    else if (ChoixRépétition == "N" || ChoixRépétition == "n")
+    {
+        Répétition.RefaireLeQuestionaire = false;
+    }
+    else
+    {
+        Console.WriteLine("heu...");
+        throw new Exception("erreur : vous devez répondre par y ou n !");
+    }
+
 }
-
-Console.WriteLine("Voulez-vous afficher les réponses ? (Y/N)\n");
-string? choixAffichage = Console.ReadLine();
-Console.WriteLine("");
-
-GestionairedesQuestionReponse afficher = new GestionairedesQuestionReponse();
-
-if (choixAffichage == "Y" || choixAffichage == "y")
-{
-    afficher.AfficherReponses = true;
-}
-
-else if (choixAffichage == "N" || choixAffichage == "n")
-{
-    afficher.AfficherReponses = false;
-}
-
-else
-{
-    Console.WriteLine("heu...");
-    throw new Exception("erreur : vous devez répondre par y ou n !");
-}
-
-afficher.AfficherReponsesMethod(listeQR);
 
 //if (yon == "Y" || yon == "y")
 //{
