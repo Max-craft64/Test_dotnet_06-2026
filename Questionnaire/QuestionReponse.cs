@@ -6,6 +6,6 @@
 
         public string Reponse { get; set; } = "";
 
-        public string PréReponse { get; set; } = "";
+        public string PreReponse { get; set; } = "";
     }
 }

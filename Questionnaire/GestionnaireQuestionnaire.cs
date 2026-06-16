@@ -1,8 +1,10 @@
 ﻿namespace test_15_06_2026.Questionaire
 {
-    public class GestionairedesQuestionReponse
+    public class GestionnaireQuestionnaire
     {
         public bool AfficherReponses { get; set; } = false;
+
+        public bool RefaireLeQuestionaire { get; set; } = true;
 
         public void AfficherReponsesMethod(List<QuestionReponse> listeQR)
         {
@@ -11,7 +13,7 @@
                 Console.WriteLine("Voici les réponses :");
                 foreach (QuestionReponse QR in listeQR)
                 {
-                    Console.WriteLine($"{QR.PréReponse}{QR.Reponse}");
+                    Console.WriteLine($"{QR.PreReponse}{QR.Reponse}");
                 }
                 Console.WriteLine("");
             }
@@ -21,8 +23,6 @@
                 Console.WriteLine("");
             }
         }
-
-        public bool RefaireLeQuestionaire { get; set; } = false;
 
         public void RefaireLeQuestionaireMethod()
         {
